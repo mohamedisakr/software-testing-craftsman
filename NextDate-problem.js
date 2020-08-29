@@ -94,7 +94,7 @@ function nextDate(day, month, year) {
 
 const theDate =  [31, 12, 2004]; // [31, 1, 2011]; // [29, 2, 2004];
 const [tomorrowDay, tomorrowMonth, tomorrowYear] = nextDate(theDate[0], theDate[1], theDate[2]);
-console.log(tomorrowDay, tomorrowMonth, tomorrowYear);
+console.log(`${tomorrowDay}-${tomorrowMonth}-${tomorrowYear}`);
 
 /*
 // const days = [-1, 0, 1, 2, 30, 31, 32];
