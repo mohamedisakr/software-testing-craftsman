@@ -22,12 +22,7 @@ function isValidYear(year) {
     }
     return false;
 }
-/*
-if ((year % 4 == 0) and (year % 100 != 0)) or (year % 400) == 0:
-        return True
-    else:
-        return False
-*/
+
 function isLeap(year){
     if((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
         return true;
@@ -36,22 +31,67 @@ function isLeap(year){
 }
 
 function nextDate(day, month, year) {
-    if(!isValidDay(day)){
+
+    if(!isValidDay(day) || !isValidMonth(month) || !isValidYear(year)) {
         console.log('Invalid date.');
         return;
     }
 
-    if(!isValidMonth(month)) {
-         console.log('Invalid date.');
-        return;
-    }
+    const isLeapYear = isLeap(year);
+    let tomorrowDay = 0; 
+    let tomorrowMonth = month; 
+    let tomorrowYear = year;
 
-    if(!isValidYear(year)) {
-        console.log('Invalid date.');
-        return;
+    
+    if(days31.includes( month)) {
+        if(day < 31) {
+            tomorrowDay = day + 1;
+        } else {
+            tomorrowDay = 1;
+            tomorrowMonth = month + 1;
+        }
+    } else if (days30.includes( month)) {
+        if(day < 30) {
+            tomorrowDay = day + 1;
+        } else if(day === 30){
+                tomorrowDay = 1;
+                tomorrowMonth = month + 1;
+        }
+    } else if (month === 12) {
+       if(day < 31) {
+            tomorrowDay = day + 1;
+        } else {
+            tomorrowDay = 1;
+            tomorrowMonth = 1;
+            tomorrowYear = year + 1;
+        }
+    } else if (month === 2) {
+        if(isLeapYear) {
+            if(day < 29) {
+                tomorrowDay = day + 1;
+            } else {
+                tomorrowDay = 1;
+                tomorrowMonth = month + 1;
+            }
+        } else {
+            if(day < 28) {
+                tomorrowDay = day + 1;
+            } else {
+                tomorrowDay = 1;
+                tomorrowMonth = month + 1;
+            }
+        }
     }
+    
+    return [tomorrowDay, tomorrowMonth, tomorrowYear];
 }
 
+
+const theDate =  [31, 12, 2004]; // [31, 1, 2011]; // [29, 2, 2004];
+const [tomorrowDay, tomorrowMonth, tomorrowYear] = nextDate(theDate[0], theDate[1], theDate[2]);
+console.log(tomorrowDay, tomorrowMonth, tomorrowYear);
+
+/*
 // const days = [-1, 0, 1, 2, 30, 31, 32];
 // days.forEach(day=>console.log(isValidDay(day)));
 
@@ -68,3 +108,13 @@ function nextDate(day, month, year) {
 // if(days31.includes(month)){console.log(`Month ${month} is 31 days.`);}
 // else {console.log(`Month ${month} is NOT 31 days.`);}
 
+//   if(!isValidMonth(month)) {
+//          console.log('Invalid date.');
+//         return;
+//     }
+
+//     if(!isValidYear(year)) {
+//         console.log('Invalid date.');
+//         return;
+//     }
+*/
