@@ -1,7 +1,3 @@
-const days31 = [1, 3, 5, 7, 8, 10];
-const days30 = [4, 6, 9, 11]; 
-
-// message: “Invalid Input Date.”
 function isValidDay(day){
     if(day >= 1 && day <= 31){
         return true;
@@ -30,6 +26,15 @@ function isLeap(year){
     return false;
 }
 
+const days31 = [1, 3, 5, 7, 8, 10];
+const days30 = [4, 6, 9, 11]; 
+
+/**
+ * Get  the date of the day after the input date
+ * @param {*} day the day of the input date
+ * @param {*} month the month of the input date
+ * @param {*} year the year of the input date
+ */
 function nextDate(day, month, year) {
 
     if(!isValidDay(day) || !isValidMonth(month) || !isValidYear(year)) {
