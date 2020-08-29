@@ -39,20 +39,27 @@ function computeCommission(amount) {
     let commission = 0.0;
   
    if(amount > 1800) {
-       commission = amount * 0.2;
-   } else { 
-       const rest = amount - 1000;
-        if(rest > 0) {
-           commission = (1000 * 0.1) + (rest * 0.15)
-        } else {
-            commission = amount * 0.1;
-        }
+       commission = (1000 * 0.1);
+       commission += (800 * 0.15); 
+       commission += (amount - 1000) * 0.2;
+   } else if (commission > 1000) { 
+        commission = (1000 * 0.1);
+       commission += (amount - 1000)  * 0.15;
+   } else {
+       commission = amount * 0.1;
    }
    return commission
 }
 
+function computeSales(locks, stocks, barrels) {
+    const lockSales = lockUnitPrice  * locks;
+    const stockSales = stockUnitPrice * stocks;
+    const barrelSales = barrelUnitPrice * barrels
+    return lockSales + stockSales + barrelSales;
+}
+
 const amounts = [700, 1000, 1790, 1800, 2000];
-//              [70,  100,  218.5,220,  400]
+//              [70,  100,  179,  180,  420]
 amounts.forEach(amount=>console.log(computeCommission(amount)))
 
 /*
