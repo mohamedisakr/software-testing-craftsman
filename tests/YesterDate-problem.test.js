@@ -1,0 +1,94 @@
+const yesterDate = require("../YesterDate-problem");
+
+// describe("Test YesterDate function", () => {
+describe("first day of the year", () => {
+  test("first day", () => {
+    const theDate = [1, 1, 2011];
+    const result = yesterDate(theDate[0], theDate[1], theDate[2]);
+    expect(result).toEqual([31, 12, 2010]);
+  });
+});
+
+describe("feb day", () => {
+  test("leap year and day = 29", () => {
+    const theDate = [29, 2, 2012];
+    const result = yesterDate(theDate[0], theDate[1], theDate[2]);
+    expect(result).toEqual([28, 2, 2012]);
+  });
+
+  test("not leap year and day = 28", () => {
+    const theDate = [28, 2, 2010];
+    const result = yesterDate(theDate[0], theDate[1], theDate[2]);
+    expect(result).toEqual([27, 2, 2010]);
+  });
+
+  test("test 1: day > 1 and day <= 27", () => {
+    const theDate = [2, 2, 2012];
+    const result = yesterDate(theDate[0], theDate[1], theDate[2]);
+    expect(result).toEqual([1, 2, 2012]);
+  });
+
+  test("test 2: day > 1 and day <= 27", () => {
+    const theDate = [8, 2, 2010];
+    const result = yesterDate(theDate[0], theDate[1], theDate[2]);
+    expect(result).toEqual([7, 2, 2010]);
+  });
+
+  test("first day of feb", () => {
+    const theDate = [1, 2, 2010];
+    const result = yesterDate(theDate[0], theDate[1], theDate[2]);
+    expect(result).toEqual([31, 1, 2010]);
+  });
+});
+
+describe("first day 31 days month (1, 3, 5, 7, 8, 10, 12)", () => {
+  test("first day in january", () => {
+    const theDate = [1, 1, 2011];
+    const result = yesterDate(theDate[0], theDate[1], theDate[2]);
+    expect(result).toEqual([31, 12, 2010]);
+  });
+  test("first day in march", () => {
+    const theDate = [1, 3, 2011];
+    const result = yesterDate(theDate[0], theDate[1], theDate[2]);
+    expect(result).toEqual([28, 2, 2010]);
+  });
+
+  test("first day in may", () => {
+    const theDate = [1, 5, 2011];
+    const result = yesterDate(theDate[0], theDate[1], theDate[2]);
+    expect(result).toEqual([30, 4, 2011]);
+  });
+
+  test("first day in july", () => {
+    const theDate = [1, 7, 2011];
+    const result = yesterDate(theDate[0], theDate[1], theDate[2]);
+    expect(result).toEqual([30, 6, 2011]);
+  });
+
+  test("first day in august", () => {
+    const theDate = [1, 8, 2011];
+    const result = yesterDate(theDate[0], theDate[1], theDate[2]);
+    expect(result).toEqual([31, 7, 2011]);
+  });
+
+  test("first day in october", () => {
+    const theDate = [1, 10, 2011];
+    const result = yesterDate(theDate[0], theDate[1], theDate[2]);
+    expect(result).toEqual([30, 9, 2011]);
+  });
+
+  test("first day in december", () => {
+    const theDate = [1, 12, 2011];
+    const result = yesterDate(theDate[0], theDate[1], theDate[2]);
+    expect(result).toEqual([30, 11, 2011]);
+  });
+});
+
+describe("first day 30 days month (4, 6, 9, 11)", () => {
+  test("first day", () => {
+    const theDate = [1, 1, 2011];
+    const result = yesterDate(theDate[0], theDate[1], theDate[2]);
+    expect(result).toEqual([31, 12, 2010]);
+  });
+});
+// });
