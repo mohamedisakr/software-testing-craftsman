@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --coverage --reporters default jest-stare"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "jest": "^26.4.2"
+  },
+  "dependencies": {
+    "jest-stare": "^1.26.0",
+    "minimist": "^1.2.5"
   }
 }
