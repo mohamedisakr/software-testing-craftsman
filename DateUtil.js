@@ -26,4 +26,66 @@ function isLeap(year) {
   return false;
 }
 
-module.exports = { isValidDay, isValidMonth, isValidYear, isLeap };
+function validateFirstDayIn31(day, month, year) {
+  if (!isValidDay(day) || !isValidMonth(month) || !isValidYear(year)) {
+    console.log("Invalid date.");
+    return;
+  }
+
+  let yesterDay = day;
+  let yesterMonth = month;
+  let yesterYear = year;
+  const isleap = isLeap(year);
+
+  if (month === 1) {
+    yesterDay = 31;
+    yesterMonth = 12;
+    yesterYear = year - 1;
+  } else if (month === 3) {
+    if (isleap) {
+      yesterDay = 29;
+      yesterMonth = month - 1;
+      yesterYear = year;
+    } else {
+      yesterDay = 28;
+      yesterMonth = month - 1;
+      yesterYear = year;
+    }
+  } else if (month === 5) {
+    yesterDay = 30;
+    yesterMonth = month - 1;
+    yesterYear = year;
+  } else if (month === 7) {
+    yesterDay = 30;
+    yesterMonth = month - 1;
+    yesterYear = year;
+  } else if (month === 8) {
+    yesterDay = 31;
+    yesterMonth = month - 1;
+    yesterYear = year;
+  } else if (month === 10) {
+    yesterDay = 30;
+    yesterMonth = month - 1;
+    yesterYear = year;
+  } else if (month === 12) {
+    yesterDay = 30;
+    yesterMonth = month - 1;
+    yesterYear = year;
+  }
+}
+
+function validateFirstDayIn30(day, month, year) {
+  if (!isValidDay(day) || !isValidMonth(month) || !isValidYear(year)) {
+    console.log("Invalid date.");
+    return;
+  }
+}
+
+module.exports = {
+  isValidDay,
+  isValidMonth,
+  isValidYear,
+  isLeap,
+  validateFirstDayIn31,
+  validateFirstDayIn30,
+};
