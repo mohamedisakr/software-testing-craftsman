@@ -12,6 +12,10 @@ function isValidMonth(month) {
   return false;
 }
 
+function isValidDayAndMonthPair(day, month) {
+  //
+}
+
 function isValidYear(year) {
   if (year >= 1812 && year <= 2012) {
     return true;
