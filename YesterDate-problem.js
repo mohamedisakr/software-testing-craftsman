@@ -1,4 +1,11 @@
-const { isValidDay, isValidMonth, isValidYear, isLeap } = require("./DateUtil");
+const {
+  isValidDay,
+  isValidMonth,
+  isValidYear,
+  isLeap,
+  validateFirstDayIn31,
+  validateFirstDayIn30,
+} = require("./DateUtil");
 
 const months31 = [1, 3, 5, 7, 8, 10, 12];
 const monthss30 = [4, 6, 9, 11];
@@ -40,10 +47,22 @@ function yesterDate(day, month, year) {
     if (day > 1 && day <= 31) {
       yesterDay = day - 1;
     } else if (day === 1) {
-      //
+      [yesterDay, yesterMonth, yesterYear] = validateFirstDayIn31(
+        day,
+        month,
+        year
+      );
     }
   } else if (months30.includes(month)) {
-    //
+    if (day > 1 && day <= 30) {
+      yesterDay = day - 1;
+    } else if (day === 1) {
+      [yesterDay, yesterMonth, yesterYear] = validateFirstDayIn30(
+        day,
+        month,
+        year
+      );
+    }
   }
 
   return [yesterDay, yesterMonth, yesterYear];

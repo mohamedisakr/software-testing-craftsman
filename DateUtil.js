@@ -72,6 +72,8 @@ function validateFirstDayIn31(day, month, year) {
     yesterMonth = month - 1;
     yesterYear = year;
   }
+
+  return [yesterDay, yesterMonth, yesterYear];
 }
 
 function validateFirstDayIn30(day, month, year) {
@@ -79,6 +81,10 @@ function validateFirstDayIn30(day, month, year) {
     console.log("Invalid date.");
     return;
   }
+
+  let yesterDay = day;
+  let yesterMonth = month;
+  let yesterYear = year;
 
   if (month === 4) {
     yesterDay = 31;
@@ -97,6 +103,8 @@ function validateFirstDayIn30(day, month, year) {
     yesterMonth = month - 1;
     yesterYear = year;
   }
+
+  return [yesterDay, yesterMonth, yesterYear];
 }
 
 module.exports = {
