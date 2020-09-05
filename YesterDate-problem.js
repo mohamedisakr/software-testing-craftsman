@@ -2,16 +2,18 @@ const {
   isValidDay,
   isValidMonth,
   isValidYear,
+  isValidDayAndMonthPair,
   isLeap,
   validateFirstDayIn31,
   validateFirstDayIn30,
 } = require("./DateUtil");
 
 const months31 = [1, 3, 5, 7, 8, 10, 12];
-const monthss30 = [4, 6, 9, 11];
+const months30 = [4, 6, 9, 11];
 
 function yesterDate(day, month, year) {
-  if (!isValidDay(day) || !isValidMonth(month) || !isValidYear(year)) {
+  // if (!isValidDay(day) || !isValidMonth(month) || !isValidYear(year)) {
+  if (!isValidDayAndMonthPair(day, month) || !isValidYear(year)) {
     console.log("Invalid date.");
     return;
   }
@@ -68,11 +70,19 @@ function yesterDate(day, month, year) {
   return [yesterDay, yesterMonth, yesterYear];
 }
 
-const theDate = [1, 1, 2011];
-const result = yesterDate(theDate[0], theDate[1], theDate[2]);
-console.log(result[0], result[1], result[2]);
-
 module.exports = { yesterDate };
+
+const theDate = [1, 1, 2011];
+// const result = yesterDate(theDate[0], theDate[1], theDate[2]);
+const [yesterDay, yesterMonth, yesterYear] = yesterDate(
+  theDate[0],
+  theDate[1],
+  theDate[2]
+);
+// if (result) {
+// console.log(result[0], result[1], result[2]);
+console.log(yesterDay, yesterMonth, yesterYear);
+// }
 
 /*
 //

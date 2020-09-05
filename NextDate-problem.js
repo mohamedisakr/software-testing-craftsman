@@ -3,6 +3,7 @@ const {
   isValidMonth,
   isValidYear,
   isLeap,
+  isValidDayAndMonthPair,
   validateFirstDayIn31,
   validateFirstDayIn30,
 } = require("./DateUtil");
@@ -17,10 +18,17 @@ const days30 = [4, 6, 9, 11];
  * @param {*} year the year of the input date
  */
 function nextDate(day, month, year) {
-  if (!isValidDay(day) || !isValidMonth(month) || !isValidYear(year)) {
+  if (!isValidDayAndMonthPair(day, month)) {
     console.log("Invalid date.");
-    return;
+    return null;
   }
+
+  if (!isValidYear(year)) {
+    console.log("Invalid date.");
+    return null;
+  }
+
+  console.log("UNREACHABLE CODE");
 
   const isLeapYear = isLeap(year);
   let tomorrowDay = 0;
@@ -72,13 +80,22 @@ function nextDate(day, month, year) {
 
 module.exports = { nextDate };
 
+//[tomorrowDay, tomorrowMonth, tomorrowYear] =
 const theDate = [31, 6, 1812];
+// const result = nextDate(theDate[0], theDate[1], theDate[2]);
 const [tomorrowDay, tomorrowMonth, tomorrowYear] = nextDate(
   theDate[0],
   theDate[1],
   theDate[2]
 );
-console.log(`${tomorrowDay}-${tomorrowMonth}-${tomorrowYear}`);
+
+if (tomorrowDay && tomorrowMonth && tomorrowYear) {
+  console.log(`${tomorrowDay}-${tomorrowMonth}-${tomorrowYear}`);
+}
+
+// if (result) {
+// console.log(`${result[0]}-${result[1]}-${result[2]}`);
+// }
 
 /*
 const theDate = [31, 12, 2004]; // [31, 1, 2011]; // [29, 2, 2004];

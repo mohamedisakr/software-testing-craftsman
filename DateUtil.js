@@ -1,3 +1,6 @@
+const months31 = [1, 3, 5, 7, 8, 10, 12];
+const months30 = [4, 6, 9, 11];
+
 function isValidDay(day) {
   if (day >= 1 && day <= 31) {
     return true;
@@ -13,7 +16,13 @@ function isValidMonth(month) {
 }
 
 function isValidDayAndMonthPair(day, month) {
-  //
+  if (months31.includes(month) && day >= 1 && day <= 31) {
+    return true;
+  } else if (months30.includes(month) && day >= 1 && day <= 30) {
+    return true;
+  }
+
+  return false;
 }
 
 function isValidYear(year) {
@@ -114,6 +123,7 @@ function validateFirstDayIn30(day, month, year) {
 module.exports = {
   isValidDay,
   isValidMonth,
+  isValidDayAndMonthPair,
   isValidYear,
   isLeap,
   validateFirstDayIn31,
