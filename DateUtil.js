@@ -79,6 +79,24 @@ function validateFirstDayIn30(day, month, year) {
     console.log("Invalid date.");
     return;
   }
+
+  if (month === 4) {
+    yesterDay = 31;
+    yesterMonth = month - 1;
+    yesterYear = year;
+  } else if (month === 6) {
+    yesterDay = 31;
+    yesterMonth = month - 1;
+    yesterYear = year;
+  } else if (month === 9) {
+    yesterDay = 31;
+    yesterMonth = month - 1;
+    yesterYear = year;
+  } else if (month === 11) {
+    yesterDay = 31;
+    yesterMonth = month - 1;
+    yesterYear = year;
+  }
 }
 
 module.exports = {
