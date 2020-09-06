@@ -8,8 +8,14 @@ describe("edge cases for nextdate function", () => {
   });
 
   test("first day of the year", () => {
-    const theDate = [1, 1, 2010];
+    // const theDate = [1, 1, 2010];
     const result = nextDate(1, 1, 2010); //(theDate[0], theDate[1], theDate[2]);
     expect(result).toBe(null); //.toContain([2, 1, 2010]); //[1, 7, 1812]
+  });
+
+  test("last day of the year", () => {
+    // const theDate = [1, 1, 2010];
+    const result = nextDate(31, 12, 2010); //(theDate[0], theDate[1], theDate[2]);
+    expect(result).toContain([1, 1, 2011]); //.toContain([2, 1, 2010]); //[1, 7, 1812]
   });
 });

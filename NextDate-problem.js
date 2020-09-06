@@ -3,11 +3,29 @@ const {
   isValidYear,
   isLeap,
   isValidDayAndMonthPair,
-  validateFirstDayIn31,
-  validateFirstDayIn30,
-  days31,
-  days30,
+  months31,
+  months30,
 } = require("./DateUtil");
+
+let tomorrowDay = 0;
+let tomorrowMonth = 0;
+let tomorrowYear = 0;
+
+function isAllValid() {
+  return (
+    !isValidDayAndMonthPair(day, month) ||
+    !isValidMonth(month) ||
+    !isValidYear(year)
+  );
+}
+
+function is31Month(month) {
+  return months31.includes(month);
+}
+
+function is30Month(month) {
+  return months30.includes(month);
+}
 
 /**
  * Get  the date of the day after the input date
@@ -16,61 +34,46 @@ const {
  * @param {*} year the year of the input date
  */
 function nextDate(day, month, year) {
-  if (
-    !isValidDayAndMonthPair(day, month) ||
-    !isValidMonth(month) ||
-    !isValidYear(year)
-  ) {
+  if (isAllValid()) {
     console.log("Invalid date.");
     return null;
   }
 
-  // if (!isValidDayAndMonthPair(day, month)) {
-  //   console.log("Invalid date.");
-  //   return null;
-  // }
-
-  // console.log("UNREACHABLE CODE");
-
+  tomorrowDay = day;
+  tomorrowMonth = month;
+  tomorrowYear = year;
   const isleap = isLeap(year);
-  let tomorrowDay = day;
-  let tomorrowMonth = month;
-  let tomorrowYear = year;
 
-  if (days31.includes(month)) {
-    if (day < 31) {
-      tomorrowDay = day + 1;
-    } else {
-      tomorrowDay = 1;
-      tomorrowMonth = month + 1;
-    }
-  } else if (days30.includes(month)) {
-    if (day < 30) {
-      tomorrowDay = day + 1;
-    } else if (day === 30) {
-      tomorrowDay = 1;
-      tomorrowMonth = month + 1;
-    }
+  if (is31Month(month)) {
+    ({ tomorrowDay, tomorrowMonth } = getDayAndMonthWhen31(day, month));
+  } else if (is30Month()) {
+    ({ tomorrowDay, tomorrowMonth } = getDayAndMonthWhen30(day, month));
   } else if (month === 12) {
     if (day < 31) {
+      // 4,12,2007
       tomorrowDay = day + 1;
     } else {
+      // 31,12,1999
       tomorrowDay = 1;
       tomorrowMonth = 1;
       tomorrowYear = year + 1;
     }
   } else if (month === 2) {
     if (isleap) {
+      // 3,2,2008
       if (day < 29) {
         tomorrowDay = day + 1;
       } else {
+        // 29,2,2008
         tomorrowDay = 1;
         tomorrowMonth = month + 1;
       }
     } else {
       if (day < 28) {
+        // 3,2,2003
         tomorrowDay = day + 1;
       } else {
+        // 28,2,2003
         tomorrowDay = 1;
         tomorrowMonth = month + 1;
       }
@@ -82,8 +85,32 @@ function nextDate(day, month, year) {
 
 module.exports = { nextDate };
 
-const result = nextDate(1, 1, 2010);
-console.log(`${result[0]}-${result[1]}-${result[2]}`);
+function getDayAndMonthWhen30(day, month) {
+  if (day < 30) {
+    // 14,4,2008
+    tomorrowDay = day + 1;
+  } else {
+    // 30,9,2001
+    //if (day === 30) {
+    tomorrowDay = 1;
+    tomorrowMonth = month + 1;
+  }
+  return { tomorrowDay, tomorrowMonth };
+}
+
+function getDayAndMonthWhen31(day, month) {
+  if (day < 31) {
+    // 20,7,2002
+    tomorrowDay = day + 1;
+  } else {
+    // 31,10,2009
+    tomorrowDay = 1;
+    tomorrowMonth = month + 1;
+  }
+  return { tomorrowDay, tomorrowMonth };
+}
+// const result = nextDate(1, 1, 2010);
+// console.log(`${result[0]}-${result[1]}-${result[2]}`);
 
 /*
 //[tomorrowDay, tomorrowMonth, tomorrowYear] =
@@ -127,7 +154,7 @@ console.log(`${tomorrowDay}-${tomorrowMonth}-${tomorrowYear}`);
 // leaps.forEach(year=>console.log(isLeap(year)));
 
 // let month = 4;
-// if(days31.includes(month)){console.log(`Month ${month} is 31 days.`);}
+// if(months31.includes(month)){console.log(`Month ${month} is 31 days.`);}
 // else {console.log(`Month ${month} is NOT 31 days.`);}
 
 //   if(!isValidMonth(month)) {
