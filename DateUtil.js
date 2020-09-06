@@ -1,13 +1,6 @@
 const months31 = [1, 3, 5, 7, 8, 10, 12];
 const months30 = [4, 6, 9, 11];
 
-function isValidDay(day) {
-  if (day >= 1 && day <= 31) {
-    return true;
-  }
-  return false;
-}
-
 function isValidMonth(month) {
   if (month >= 1 && month <= 12) {
     return true;
@@ -16,6 +9,10 @@ function isValidMonth(month) {
 }
 
 function isValidDayAndMonthPair(day, month, year) {
+  if (!isValidMonth(month) || !isValidYear(year)) {
+    return false;
+  }
+
   const isleap = isLeap(year);
 
   if (months31.includes(month) && day >= 1 && day <= 31) {
@@ -24,9 +21,9 @@ function isValidDayAndMonthPair(day, month, year) {
     return true;
   } else if (isleap && month === 2) {
     // consider february 28 or 29
-    return day <= 29 && month === 2;
+    return day >= 1 && day <= 29;
   } else if (!isleap && month === 2) {
-    return day <= 28 && month === 2;
+    return day >= 1 && day <= 28;
   }
 
   return false;
@@ -128,7 +125,6 @@ function validateFirstDayIn30(day, month, year) {
 }
 
 module.exports = {
-  isValidDay,
   isValidMonth,
   isValidDayAndMonthPair,
   isValidYear,
@@ -136,3 +132,11 @@ module.exports = {
   validateFirstDayIn31,
   validateFirstDayIn30,
 };
+/*
+function isValidDay(day) {
+  if (day >= 1 && day <= 31) {
+    return true;
+  }
+  return false;
+}
+*/
