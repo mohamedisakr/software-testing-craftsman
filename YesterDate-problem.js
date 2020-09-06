@@ -72,6 +72,7 @@ function yesterDate(day, month, year) {
 
 module.exports = { yesterDate };
 
+/* 
 const theDate = [1, 1, 2011];
 // const result = yesterDate(theDate[0], theDate[1], theDate[2]);
 const [yesterDay, yesterMonth, yesterYear] = yesterDate(
@@ -83,34 +84,4 @@ const [yesterDay, yesterMonth, yesterYear] = yesterDate(
 // console.log(result[0], result[1], result[2]);
 console.log(yesterDay, yesterMonth, yesterYear);
 // }
-
-/*
-//
-function isValidDay(day) {
-  if (day >= 1 && day <= 31) {
-    return true;
-  }
-  return false;
-}
-
-function isValidMonth(month) {
-  if (month >= 1 && month <= 12) {
-    return true;
-  }
-  return false;
-}
-
-function isValidYear(year) {
-  if (year >= 1812 && year <= 2012) {
-    return true;
-  }
-  return false;
-}
-
-function isLeap(year) {
-  if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
-    return true;
-  }
-  return false;
-}
 */

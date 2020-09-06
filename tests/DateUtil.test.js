@@ -1,13 +1,67 @@
+const {
+  isValidDay,
+  isValidMonth,
+  isValidDayAndMonthPair,
+  isValidYear,
+  isLeap,
+  validateFirstDayIn31,
+  validateFirstDayIn30,
+} = require("../DateUtil");
+
+describe("test isValidDayAndMonthPair function", () => {
+  test("invalid month & day pair (month 30)", () => {
+    const theDate = [31, 6, 2000];
+    const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
+    expect(result).toBe(false);
+  });
+  test("valid month & day pair (month 30)", () => {
+    const theDate = [30, 9, 2000];
+    const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
+    expect(result).toBe(true);
+  });
+
+  test("valid month & day pair (month 31)", () => {
+    const theDate = [31, 7, 2000];
+    const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
+    expect(result).toBe(true);
+  });
+
+  test("valid month & day pair (leap year)", () => {
+    const theDate = [29, 2, 2008];
+    const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
+    expect(result).toBe(true);
+  });
+
+  test("invalid month & day pair (not leap year)", () => {
+    const theDate = [29, 2, 2009];
+    const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
+    expect(result).toBe(false);
+  });
+
+  test("valid month & day pair (not leap year)", () => {
+    const theDate = [28, 2, 2009];
+    const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
+    expect(result).toBe(true);
+  });
+});
+
+/*
+const yesterDate = require("../YesterDate-problem");
+
 describe("first day 31 days month (1, 3, 5, 7, 8, 10, 12)", () => {
-  test("first day in january", () => {
+  it("first day in january", () => {
     const theDate = [1, 1, 2011];
     const result = yesterDate(theDate[0], theDate[1], theDate[2]);
-    expect(result).toEqual([31, 12, 2010]);
+    // if (result) {
+    //   expect(result).toEqual([31, 12, 2010]);
+    // }
+    expect(result).deep.to.equal([31, 12, 2010]);
   });
   test("first day in march", () => {
     const theDate = [1, 3, 2011];
     const result = yesterDate(theDate[0], theDate[1], theDate[2]);
-    expect(result).toEqual([28, 2, 2010]);
+    // mocha => expect([1,2]).deep.to.equal([1,2]);
+    expect(result.sort()).toEqual([28, 2, 2010].sort());
   });
 
   test("first day in may", () => {
@@ -66,3 +120,4 @@ describe("first day 30 days month (4, 6, 9, 11)", () => {
     expect(result).toEqual([31, 10, 2011]);
   });
 });
+*/

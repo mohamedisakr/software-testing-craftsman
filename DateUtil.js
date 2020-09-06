@@ -15,11 +15,18 @@ function isValidMonth(month) {
   return false;
 }
 
-function isValidDayAndMonthPair(day, month) {
+function isValidDayAndMonthPair(day, month, year) {
+  const isleap = isLeap(year);
+
   if (months31.includes(month) && day >= 1 && day <= 31) {
     return true;
   } else if (months30.includes(month) && day >= 1 && day <= 30) {
     return true;
+  } else if (isleap && month === 2) {
+    // consider february 28 or 29
+    return day <= 29 && month === 2;
+  } else if (!isleap && month === 2) {
+    return day <= 28 && month === 2;
   }
 
   return false;
