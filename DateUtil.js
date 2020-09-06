@@ -8,6 +8,21 @@ function isValidMonth(month) {
   return false;
 }
 
+function isValidYear(year) {
+  if (year >= 1812 && year <= 2012) {
+    return true;
+  }
+  return false;
+}
+
+function isLeap(year) {
+  if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+    return true;
+  }
+  return false;
+}
+
+// 1, 1, 2010
 function isValidDayAndMonthPair(day, month, year) {
   if (!isValidMonth(month) || !isValidYear(year)) {
     return false;
@@ -26,20 +41,6 @@ function isValidDayAndMonthPair(day, month, year) {
     return day >= 1 && day <= 28;
   }
 
-  return false;
-}
-
-function isValidYear(year) {
-  if (year >= 1812 && year <= 2012) {
-    return true;
-  }
-  return false;
-}
-
-function isLeap(year) {
-  if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
-    return true;
-  }
   return false;
 }
 
@@ -131,6 +132,8 @@ module.exports = {
   isLeap,
   validateFirstDayIn31,
   validateFirstDayIn30,
+  months31,
+  months30,
 };
 /*
 function isValidDay(day) {

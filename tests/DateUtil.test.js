@@ -1,5 +1,4 @@
 const {
-  isValidDay,
   isValidMonth,
   isValidDayAndMonthPair,
   isValidYear,
@@ -9,6 +8,12 @@ const {
 } = require("../DateUtil");
 
 describe("test isValidDayAndMonthPair function", () => {
+  test("valid month & day pair (month 31)", () => {
+    const theDate = [1, 1, 2010];
+    const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
+    expect(result).toBe(true);
+  });
+
   test("invalid month & day pair (month 30)", () => {
     const theDate = [31, 6, 2000];
     const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
@@ -62,8 +67,14 @@ describe("test isValidDayAndMonthPair function", () => {
     const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
     expect(result).toBe(false);
   });
-});
 
+  test("valid first day of the year", () => {
+    const theDate = [1, 1, 2010];
+    const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
+    expect(result).toBe(true);
+  });
+});
+////////////////////////
 // isLeap
 describe("test isLeap function", () => {
   test("valid leap year", () => {
@@ -78,6 +89,45 @@ describe("test isLeap function", () => {
     expect(result).toBe(false);
   });
 });
+
+describe("test isValidMonth function", () => {
+  test("valid month", () => {
+    const result = isValidMonth(1);
+    expect(result).toBe(true);
+  });
+
+  test("invalid month", () => {
+    const result = isValidMonth(0);
+    expect(result).toBe(false);
+  });
+
+  test("invalid month", () => {
+    const result = isValidMonth(13);
+    expect(result).toBe(false);
+  });
+});
+
+describe("test isValidYear function", () => {
+  test("valid year", () => {
+    const result = isValidYear(2010);
+    expect(result).toBe(true);
+  });
+
+  test("valid year", () => {
+    const result = isValidYear(1812);
+    expect(result).toBe(true);
+  });
+
+  test("invalid year", () => {
+    const result = isValidYear(1811);
+    expect(result).toBe(false);
+  });
+  test("valid year", () => {
+    const result = isValidYear(2013);
+    expect(result).toBe(false);
+  });
+});
+
 /*
 const yesterDate = require("../YesterDate-problem");
 

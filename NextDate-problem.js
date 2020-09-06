@@ -1,15 +1,13 @@
 const {
-  isValidDay,
   isValidMonth,
   isValidYear,
   isLeap,
   isValidDayAndMonthPair,
   validateFirstDayIn31,
   validateFirstDayIn30,
+  days31,
+  days30,
 } = require("./DateUtil");
-
-const days31 = [1, 3, 5, 7, 8, 10];
-const days30 = [4, 6, 9, 11];
 
 /**
  * Get  the date of the day after the input date
@@ -18,20 +16,24 @@ const days30 = [4, 6, 9, 11];
  * @param {*} year the year of the input date
  */
 function nextDate(day, month, year) {
-  if (!isValidDayAndMonthPair(day, month)) {
+  if (
+    !isValidDayAndMonthPair(day, month) ||
+    !isValidMonth(month) ||
+    !isValidYear(year)
+  ) {
     console.log("Invalid date.");
     return null;
   }
 
-  if (!isValidYear(year)) {
-    console.log("Invalid date.");
-    return null;
-  }
+  // if (!isValidDayAndMonthPair(day, month)) {
+  //   console.log("Invalid date.");
+  //   return null;
+  // }
 
-  console.log("UNREACHABLE CODE");
+  // console.log("UNREACHABLE CODE");
 
-  const isLeapYear = isLeap(year);
-  let tomorrowDay = 0;
+  const isleap = isLeap(year);
+  let tomorrowDay = day;
   let tomorrowMonth = month;
   let tomorrowYear = year;
 
@@ -58,7 +60,7 @@ function nextDate(day, month, year) {
       tomorrowYear = year + 1;
     }
   } else if (month === 2) {
-    if (isLeapYear) {
+    if (isleap) {
       if (day < 29) {
         tomorrowDay = day + 1;
       } else {
@@ -74,12 +76,16 @@ function nextDate(day, month, year) {
       }
     }
   }
-
-  return [tomorrowDay, tomorrowMonth, tomorrowYear];
+  const result = [tomorrowDay, tomorrowMonth, tomorrowYear];
+  return result;
 }
 
 module.exports = { nextDate };
 
+const result = nextDate(1, 1, 2010);
+console.log(`${result[0]}-${result[1]}-${result[2]}`);
+
+/*
 //[tomorrowDay, tomorrowMonth, tomorrowYear] =
 const theDate = [31, 6, 1812];
 // const result = nextDate(theDate[0], theDate[1], theDate[2]);
@@ -92,7 +98,7 @@ const [tomorrowDay, tomorrowMonth, tomorrowYear] = nextDate(
 if (tomorrowDay && tomorrowMonth && tomorrowYear) {
   console.log(`${tomorrowDay}-${tomorrowMonth}-${tomorrowYear}`);
 }
-
+*/
 // if (result) {
 // console.log(`${result[0]}-${result[1]}-${result[2]}`);
 // }
@@ -136,33 +142,3 @@ console.log(`${tomorrowDay}-${tomorrowMonth}-${tomorrowYear}`);
 */
 
 // =============================
-
-/*
-function isValidDay(day) {
-  if (day >= 1 && day <= 31) {
-    return true;
-  }
-  return false;
-}
-
-function isValidMonth(month) {
-  if (month >= 1 && month <= 12) {
-    return true;
-  }
-  return false;
-}
-
-function isValidYear(year) {
-  if (year >= 1812 && year <= 2012) {
-    return true;
-  }
-  return false;
-}
-
-function isLeap(year) {
-  if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
-    return true;
-  }
-  return false;
-}
-*/
