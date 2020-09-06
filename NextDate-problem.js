@@ -10,6 +10,7 @@ const {
 let tomorrowDay = 0;
 let tomorrowMonth = 0;
 let tomorrowYear = 0;
+let isleap = false;
 
 function isAllValid() {
   return (
@@ -27,6 +28,65 @@ function is30Month(month) {
   return months30.includes(month);
 }
 
+function updateWhenMonthIs2(isleap, day, month) {
+  if (isleap) {
+    // 3,2,2008
+    if (day < 29) {
+      tomorrowDay = day + 1;
+    } else {
+      // 29,2,2008
+      tomorrowDay = 1;
+      tomorrowMonth = month + 1;
+    }
+  } else {
+    if (day < 28) {
+      // 3,2,2003
+      tomorrowDay = day + 1;
+    } else {
+      // 28,2,2003
+      tomorrowDay = 1;
+      tomorrowMonth = month + 1;
+    }
+  }
+}
+
+function updateWhenMonthIs12(day, year) {
+  if (day < 31) {
+    // 4,12,2007
+    tomorrowDay = day + 1;
+  } else {
+    // 31,12,1999
+    tomorrowDay = 1;
+    tomorrowMonth = 1;
+    tomorrowYear = year + 1;
+  }
+}
+
+function updateWhen30(day, month) {
+  if (day < 30) {
+    // 14,4,2008
+    tomorrowDay = day + 1;
+  } else {
+    // 30,9,2001
+    //if (day === 30) {
+    tomorrowDay = 1;
+    tomorrowMonth = month + 1;
+  }
+  // return { tomorrowDay, tomorrowMonth };
+}
+
+function updateWhen31(day, month) {
+  if (day < 31) {
+    // 20,7,2002
+    tomorrowDay = day + 1;
+  } else {
+    // 31,10,2009
+    tomorrowDay = 1;
+    tomorrowMonth = month + 1;
+  }
+  // return { tomorrowDay, tomorrowMonth };
+}
+
 /**
  * Get  the date of the day after the input date
  * @param {*} day the day of the input date
@@ -42,73 +102,34 @@ function nextDate(day, month, year) {
   tomorrowDay = day;
   tomorrowMonth = month;
   tomorrowYear = year;
-  const isleap = isLeap(year);
+  isleap = isLeap(year);
 
   if (is31Month(month)) {
-    ({ tomorrowDay, tomorrowMonth } = getDayAndMonthWhen31(day, month));
+    // ({ tomorrowDay, tomorrowMonth } = getDayAndMonthWhen31(day, month));
+    updateWhen31(day, month);
   } else if (is30Month()) {
-    ({ tomorrowDay, tomorrowMonth } = getDayAndMonthWhen30(day, month));
+    // ({ tomorrowDay, tomorrowMonth } = getDayAndMonthWhen30(day, month));
+    updateWhen30(day, month);
   } else if (month === 12) {
-    if (day < 31) {
-      // 4,12,2007
-      tomorrowDay = day + 1;
-    } else {
-      // 31,12,1999
-      tomorrowDay = 1;
-      tomorrowMonth = 1;
-      tomorrowYear = year + 1;
-    }
+    updateWhenMonthIs12(day, year);
   } else if (month === 2) {
-    if (isleap) {
-      // 3,2,2008
-      if (day < 29) {
-        tomorrowDay = day + 1;
-      } else {
-        // 29,2,2008
-        tomorrowDay = 1;
-        tomorrowMonth = month + 1;
-      }
-    } else {
-      if (day < 28) {
-        // 3,2,2003
-        tomorrowDay = day + 1;
-      } else {
-        // 28,2,2003
-        tomorrowDay = 1;
-        tomorrowMonth = month + 1;
-      }
-    }
+    updateWhenMonthIs2(isleap, day, month);
   }
   const result = [tomorrowDay, tomorrowMonth, tomorrowYear];
   return result;
 }
 
-module.exports = { nextDate };
+module.exports = {
+  nextDate,
+  isAllValid,
+  is31Month,
+  is30Month,
+  updateWhenMonthIs2,
+  updateWhenMonthIs12,
+  updateWhen30,
+  updateWhen31,
+};
 
-function getDayAndMonthWhen30(day, month) {
-  if (day < 30) {
-    // 14,4,2008
-    tomorrowDay = day + 1;
-  } else {
-    // 30,9,2001
-    //if (day === 30) {
-    tomorrowDay = 1;
-    tomorrowMonth = month + 1;
-  }
-  return { tomorrowDay, tomorrowMonth };
-}
-
-function getDayAndMonthWhen31(day, month) {
-  if (day < 31) {
-    // 20,7,2002
-    tomorrowDay = day + 1;
-  } else {
-    // 31,10,2009
-    tomorrowDay = 1;
-    tomorrowMonth = month + 1;
-  }
-  return { tomorrowDay, tomorrowMonth };
-}
 // const result = nextDate(1, 1, 2010);
 // console.log(`${result[0]}-${result[1]}-${result[2]}`);
 
