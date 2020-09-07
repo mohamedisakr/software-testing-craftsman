@@ -1,6 +1,13 @@
 const months31 = [1, 3, 5, 7, 8, 10, 12];
 const months30 = [4, 6, 9, 11];
 
+function isValidDay(day) {
+  if (day >= 1 && day <= 31) {
+    return true;
+  }
+  return false;
+}
+
 function isValidMonth(month) {
   if (month >= 1 && month <= 12) {
     return true;
@@ -16,6 +23,10 @@ function isValidYear(year) {
 }
 
 function isLeap(year) {
+  if (!isValidYear(year)) {
+    return false;
+  }
+
   if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
     return true;
   }
@@ -24,7 +35,7 @@ function isLeap(year) {
 
 // 1, 1, 2010
 function isValidDayAndMonthPair(day, month, year) {
-  if (!isValidMonth(month) || !isValidYear(year)) {
+  if (!isValidDay(day) || !isValidMonth(month) || !isValidYear(year)) {
     return false;
   }
 
@@ -44,6 +55,7 @@ function isValidDayAndMonthPair(day, month, year) {
   return false;
 }
 
+//!isValidDay(day) ||
 function validateFirstDayIn31(day, month, year) {
   if (!isValidDay(day) || !isValidMonth(month) || !isValidYear(year)) {
     console.log("Invalid date.");

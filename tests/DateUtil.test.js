@@ -7,6 +7,8 @@ const {
   validateFirstDayIn30,
 } = require("../DateUtil");
 
+////////////////////////////////////////////////////////////////////////////////////////////////
+// isValidDayAndMonthPair
 describe("test isValidDayAndMonthPair function", () => {
   test("valid month & day pair (month 31)", () => {
     const theDate = [1, 1, 2010];
@@ -73,8 +75,57 @@ describe("test isValidDayAndMonthPair function", () => {
     const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
     expect(result).toBe(true);
   });
+
+  test("valid date in 31 month", () => {
+    const theDate = [23, 1, 2002];
+    const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
+    expect(result).toBe(true);
+  });
+
+  test("invalid date in 31 month", () => {
+    const theDate = [37, 7, 2010];
+    const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
+    expect(result).toBe(false);
+  });
+
+  test("valid date in 30 month", () => {
+    const theDate = [12, 11, 1999];
+    const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
+    expect(result).toBe(true);
+  });
+
+  test("invalid date in 30 month", () => {
+    const theDate = [32, 4, 2007];
+    const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
+    expect(result).toBe(false);
+  });
+
+  test("valid date in february month leap year", () => {
+    const theDate = [29, 2, 2008];
+    const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
+    expect(result).toBe(true);
+  });
+
+  test("invalid date in february month leap year", () => {
+    const theDate = [38, 2, 2008];
+    const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
+    expect(result).toBe(false);
+  });
+
+  test("valid date in february month not leap year", () => {
+    const theDate = [28, 2, 2007];
+    const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
+    expect(result).toBe(true);
+  });
+
+  test("invalid date in february month not leap year", () => {
+    const theDate = [39, 2, 2003];
+    const result = isValidDayAndMonthPair(theDate[0], theDate[1], theDate[2]);
+    expect(result).toBe(false);
+  });
 });
-////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////
 // isLeap
 describe("test isLeap function", () => {
   test("valid leap year", () => {
@@ -83,13 +134,33 @@ describe("test isLeap function", () => {
     expect(result).toBe(true);
   });
 
-  test("valid leap year", () => {
+  test("valid non-leap year", () => {
     const theDate = [20, 6, 2001];
+    const result = isLeap(theDate[2]);
+    expect(result).toBe(false);
+  });
+  //
+  test("invalid leap year", () => {
+    const theDate = [20, 6, 2016];
+    const result = isLeap(theDate[2]);
+    expect(result).toBe(false);
+  });
+
+  test("invalid leap year", () => {
+    const theDate = [20, 6, 2020];
+    const result = isLeap(theDate[2]);
+    expect(result).toBe(false);
+  });
+
+  test("invalid leap year", () => {
+    const theDate = [20, 6, 2024];
     const result = isLeap(theDate[2]);
     expect(result).toBe(false);
   });
 });
 
+////////////////////////////////////////////////////////////////////////////////////////////////
+// isValidMonth
 describe("test isValidMonth function", () => {
   test("valid month", () => {
     const result = isValidMonth(1);
@@ -107,6 +178,8 @@ describe("test isValidMonth function", () => {
   });
 });
 
+////////////////////////////////////////////////////////////////////////////////////////////////
+// isValidYear
 describe("test isValidYear function", () => {
   test("valid year", () => {
     const result = isValidYear(2010);
@@ -127,6 +200,16 @@ describe("test isValidYear function", () => {
     expect(result).toBe(false);
   });
 });
+
+/*
+describe("isValidYear function", () => {
+  test("valid day, month, and year combinations", () => {
+    const theDate = [23, 2, 1978];
+    const result = isValidYear(theDate[0], theDate[1], theDate[2]);
+    expect(result).toBeTruthy(); //[1, 7, 1812]
+  });
+});
+*/
 
 /*
 const yesterDate = require("../YesterDate-problem");

@@ -12,7 +12,7 @@ let tomorrowMonth = 0;
 let tomorrowYear = 0;
 let isleap = false;
 
-function isAllValid() {
+function isAllValid(day, month, year) {
   return (
     !isValidDayAndMonthPair(day, month) ||
     !isValidMonth(month) ||
