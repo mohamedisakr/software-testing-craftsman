@@ -17,23 +17,14 @@ function generateProduct(...arrays) {
 }
 
 function generateTestCases(product, functionName) {
-  // let desc = `describe("test ${functionName} function", () => {`;
-  // product.forEach((value, index) => {
-  //   desc += ` ${value}`; //${index},
-  //   // console.log(value); //, index
-  // });
-
-  let desc = `describe("test ${functionName} function", () => {`;
+  let desc = `describe("test ${functionName} function", () => {\n`;
   product.forEach((val, index) => {
-    // val.forEach((item) => {
-    // let arr = Array.from(val);
-    desc += `\nit(case ${index + 1}, () => {\n`; // ` ${item}`; //${index},
-    desc += `\tconst theDate = [${val}]\n`; // [31, 6, 2000];
-    desc += `\tconst result = (theDate[0], theDate[1], theDate[2]);\n`; //${functionName}
-    desc += `\texpect(result).toBe(false);\n});`;
-    // console.log(item);
-    // });
+    desc += `\nit("case ${index + 1}" , () => {\n`;
+    desc += `\tconst theDate = [${val}];\n`;
+    desc += `\tconst result = ${functionName}(theDate[0], theDate[1], theDate[2]);\n`;
+    desc += `\texpect(result).toBe(false);\n});\n`;
   });
+  desc += `});\n`;
   return desc;
 }
 
@@ -70,9 +61,9 @@ console.log(desc);
 */
 
 const writeFile = util.promisify(fs.writeFile);
-fn = async () => {
-  await writeFile("foo.txt", "this is a test file.");
+saveFileToDisk = async () => {
+  await writeFile("./gen/robust-worst-case-test-cases.js", desc);
 };
 
-// fn();
+saveFileToDisk();
 // */
