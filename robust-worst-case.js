@@ -5,8 +5,8 @@ const util = require("util");
 
 const writeFile = util.promisify(fs.writeFile);
 
-saveFileToDisk = async () => {
-  await writeFile("gen/robust-worst-case-test-cases.js", desc);
+saveFileToDisk = async (fileName) => {
+  await writeFile(`gen/${fileName}.test.js`, desc); // robust-worst-case-test-cases
 };
 
 function calculateRobustBoundaryValue(min, max) {
