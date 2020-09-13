@@ -1,0 +1,53 @@
+// involves the Cartesian product of the seven-element sets we used
+// in robustness testing resulting in 7^n test cases.
+const fs = require("fs");
+const util = require("util");
+
+const writeFile = util.promisify(fs.writeFile);
+
+saveFileToDisk = async () => {
+  await writeFile("gen/robust-worst-case-test-cases.js", desc);
+};
+
+function calculateRobustBoundaryValue(min, max) {
+  const nom = parseInt(max / 2);
+  return [min - 1, min, min + 1, nom, max - 1, max, max + 1];
+}
+
+function generateCartesianProduct(...data) {
+  let collection = [].concat(data);
+  return collection.reduce((acc, curr) =>
+    acc.flatMap((c) => curr.map((n) => [].concat(c, n)))
+  );
+}
+
+function generate() {
+  // ...values [[min, max], [min, max], ..., [min, max]]
+  // cases (robust boundary value) => by calling calculateRobustBoundaryValue for each value
+  // call generateCartesianProduct
+  // call generateTestCases and return its results
+  // call saveFileToDisk
+}
+
+function generateTestCases(product, functionName) {
+  let desc = `const solve = require('../triangle-problem');\n\n`;
+  desc += `describe("test ${functionName} function", () => {\n`;
+  product.forEach((val, index) => {
+    desc += `\nit("case ${index + 1}" , () => {\n`;
+    desc += `\tconst theDate = [${val}];\n`;
+    desc += `\tconst result = ${functionName}(theDate[0], theDate[1], theDate[2]);\n`;
+    desc += `\texpect(result).toBe(false);\n});\n`;
+  });
+  desc += `});\n`;
+  return desc;
+}
+
+let daysCases = calculateRobustBoundaryValue(1, 31);
+let monthsCases = calculateRobustBoundaryValue(1, 12);
+let yearsCases = calculateRobustBoundaryValue(1812, 2012);
+
+const product = generateCartesianProduct(daysCases, monthsCases, yearsCases);
+const desc = generateTestCases(product, "solve");
+console.log(desc);
+
+saveFileToDisk();
