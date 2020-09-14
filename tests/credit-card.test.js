@@ -14,6 +14,14 @@ describe("test removeCheckDigit function", () => {
     const actual = removeCheckDigit(creditCard);
     expect(actual).toBe(expected);
   });
+  
+  // geek for geek example 79927398713
+  test("valid case", () => {
+    const creditCard = 4690358213754657;
+    const expected = 469035821375465;
+    const actual = removeCheckDigit(creditCard);
+    expect(actual).toBe(expected);
+  });
 });
 
 // multiplyby2
