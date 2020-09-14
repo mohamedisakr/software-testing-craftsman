@@ -1,6 +1,6 @@
 // 4690358213754657
-function getWithoutCheckDigit(creditCard) {
-  return creditCard.slice(0, creditCard.length - 1);
+function removeCheckDigit(creditCard) {
+  return parseInt(creditCard / 10);
 }
 
 function multiplyby2(number) {
@@ -44,10 +44,10 @@ function verifyCheckDigit(num) {
   }
 }
 
-// let creditCard = 469035821375465;
-// 4 6 9 0 3 5 8 2 1 3 7 5 4 6 5
-// console.log(parseInt(creditCard));
+let creditCard = 4690358213754657;
+console.log(removeCheckDigit(creditCard));
 
+/*
 let creditCard = 469035821375465;
 const theSum = sumAll(creditCard);
 console.log(theSum);
@@ -55,6 +55,11 @@ console.log();
 
 const last = verifyCheckDigit(theSum);
 console.log(last);
+*/
+
+// let creditCard = 469035821375465;
+// 4 6 9 0 3 5 8 2 1 3 7 5 4 6 5
+// console.log(parseInt(creditCard));
 
 // let creditCard = "469035821375465";
 // const theSum = sumAll(creditCard);
@@ -64,7 +69,7 @@ console.log(last);
 // console.log(parseInt("4690358213754657"));
 
 // let creditCard = "4690358213754657";
-// let result = getWithoutCheckDigit(creditCard);
+// let result = removeCheckDigit(creditCard);
 // console.log(result);
 
 // let number = "8";
