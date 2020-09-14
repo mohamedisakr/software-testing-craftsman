@@ -44,8 +44,16 @@ function verifyCheckDigit(num) {
   }
 }
 
-let creditCard = 4690358213754657;
-console.log(removeCheckDigit(creditCard));
+module.exports = {
+  removeCheckDigit,
+  multiplyby2,
+  addDigits,
+  sumAll,
+  verifyCheckDigit,
+};
+
+// let creditCard = 4690358213754657;
+// console.log(removeCheckDigit(creditCard));
 
 /*
 let creditCard = 469035821375465;
