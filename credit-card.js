@@ -1,20 +1,27 @@
 // steps for Luhn algorithm
 // Step 1 – Starting from the rightmost digit double the value of every second digit,
-// Step 2 – If doubling of a number results in a two digits number i.e greater 
-//    than 9 (e.g., 6 × 2 = 12), then add the digits of the product 
+// Step 2 – If doubling of a number results in a two digits number i.e greater
+//    than 9 (e.g., 6 × 2 = 12), then add the digits of the product
 //    (e.g., 12: 1 + 2 = 3, 15: 1 + 5 = 6), to get a single digit number.
 // Step 3 – Now take the sum of all the digits
-// Step 4 – If the total modulo 10 is equal to 0 (if the total ends in zero) 
+// Step 4 – If the total modulo 10 is equal to 0 (if the total ends in zero)
 //    then the number is valid according to the Luhn formula; else it is not valid.
 
-
+function getLuhn(cardNo) {
+  let sum = 0;
+  for (let i = cardNo.length - 2; i <= 0; i += 2) {
+    let mul = parseInt(cardNo[i]) * 2;
+    if (mul > 9) {
+    }
+  }
+}
 // 4690358213754657
-function removeCheckDigit(creditCard) {
-  return parseInt(creditCard / 10);
+function removeCheckDigit(cardNo) {
+  return parseInt(cardNo / 10);
 }
 
-function multiplyby2(number) {
-  return number * 2;
+function multiplyby2(cardNo) {
+  return cardNo * 2;
 }
 
 function addDigits(num) {
