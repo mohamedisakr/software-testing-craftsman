@@ -8,3 +8,7 @@ install:
 
 script:
   - npm test
+
+deploy:
+  on:
+    branch: master
