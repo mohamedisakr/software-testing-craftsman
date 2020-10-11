@@ -1,3 +1,5 @@
+// TODO: implement different algorithm
+// use clinic.js profiler to compare each algorithm
 function gcd(x, y) {
   while (x !== y) {
     if (x > y) {
