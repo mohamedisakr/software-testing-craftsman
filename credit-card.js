@@ -61,12 +61,24 @@ function verifyCheckDigit(num) {
   }
 }
 
+// Credit card numbers typically consist of 13, 15, or 16 digits. For example,
+// 4690 3582 1375 4657
+function isValidLength(creditCard) {
+  const card = creditCard.trim();
+  const len = card.length;
+  if (len === 13 || len === 15 || len === 16) {
+    return true;
+  }
+  return false;
+}
+
 module.exports = {
   removeCheckDigit,
   multiplyby2,
   addDigits,
   sumAll,
   verifyCheckDigit,
+  isValidLength,
 };
 
 // let creditCard = 4690358213754657;

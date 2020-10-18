@@ -4,7 +4,54 @@ const {
   addDigits,
   sumAll,
   verifyCheckDigit,
+  isValidLength,
 } = require("../credit-card");
+
+// isValidLength 13, 15, or 16
+// 4690358213754657
+describe.only("test isValidLength function", () => {
+  test("valid length 13", () => {
+    const creditCard = "4690358213754";
+    // const expected = true;
+    const actual = isValidLength(creditCard);
+    expect(actual).toBeTruthy(); //.toBe(expected);
+  });
+
+  test("valid length 15", () => {
+    const creditCard = "469035821375465";
+    // const expected = true;
+    const actual = isValidLength(creditCard);
+    expect(actual).toBeTruthy();
+  });
+
+  test("valid length 16", () => {
+    const creditCard = "4690358213754657";
+    // const expected = true;
+    const actual = isValidLength(creditCard);
+    expect(actual).toBeTruthy();
+  });
+
+  test("NOT valid length 12", () => {
+    const creditCard = "469035821375";
+    // const expected = false;
+    const actual = isValidLength(creditCard);
+    expect(actual).toBeFalsy();
+  });
+
+  test("NOT valid length 14", () => {
+    const creditCard = "46903582137546";
+    // const expected = false;
+    const actual = isValidLength(creditCard);
+    expect(actual).toBeFalsy();
+  });
+
+  test("NOT valid length 17", () => {
+    const creditCard = "46903582137546570";
+    // const expected = false;
+    const actual = isValidLength(creditCard);
+    expect(actual).toBeFalsy();
+  });
+});
 
 // removeCheckDigit
 describe("test removeCheckDigit function", () => {
@@ -14,7 +61,7 @@ describe("test removeCheckDigit function", () => {
     const actual = removeCheckDigit(creditCard);
     expect(actual).toBe(expected);
   });
-  
+
   // geek for geek example 79927398713
   test("valid case", () => {
     const creditCard = 4690358213754657;
