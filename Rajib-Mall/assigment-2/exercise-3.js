@@ -1,0 +1,1 @@
+function computeInterestRate(amount, months) {}
