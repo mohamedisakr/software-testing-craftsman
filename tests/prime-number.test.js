@@ -1,5 +1,6 @@
 const { isPrime } = require("../prime-number");
-const errorMessage = "The number should be integer, in range from 0 to 1000";
+const errorMessage =
+  "The number should be integer, within range from 0 to 1000";
 
 //
 describe("Boundary Value Analysis + Equivalence Partitioning", () => {

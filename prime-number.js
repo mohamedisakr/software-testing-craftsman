@@ -1,15 +1,14 @@
 function isPrime(n) {
   // 0 => 1000
+  const errorMessage =
+    "The number should be integer, within range from 0 to 1000";
+
   if (n < 0 || n > 1000) {
-    throw new RangeError(
-      "The number should be integer, in range from 0 to 1000"
-    );
+    throw new RangeError(errorMessage);
   }
 
   if (!Number.isInteger(n)) {
-    throw new TypeError(
-      "The number should be integer, in range from 0 to 1000"
-    );
+    throw new TypeError(errorMessage);
   }
 
   if (n === 0) {
