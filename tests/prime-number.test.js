@@ -1,4 +1,5 @@
 const { isPrime } = require("../prime-number");
+const errorMessage = "The number should be integer, in range from 0 to 1000";
 
 //
 describe("Boundary Value Analysis + Equivalence Partitioning", () => {
@@ -6,7 +7,6 @@ describe("Boundary Value Analysis + Equivalence Partitioning", () => {
   test("the LB (lower bound) of value 0", () => {
     const n = 0;
     const actual = isPrime(n);
-    // console.log(actual);
     expect(actual).toBeFalsy();
   });
 
@@ -43,153 +43,177 @@ describe("Boundary Value Analysis + Equivalence Partitioning", () => {
   // invalid
   test("above the UB (upper bound) of value 1001", () => {
     const n = 1001;
-    expect(isPrime(n)).rejects.toThrowError(
-      "The number should be in range from 0 to 1000"
-    );
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   // invalid
   test("below the LB (lower bound) of value -1", () => {
     const n = -1;
-    expect(isPrime(n)).rejects.toThrowError(
-      "The number should be in range from 0 to 1000"
-    );
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 });
 
-/*
+// ******************************************************************
+
 //
 describe("Error Guessing + Special Values", () => {
   //
-  test("empty string",  () => {
+  test("empty string", () => {
     const n = "";
-     expect(isPrime(n)).rejects.toThrowError(
-      "You should type valid integer number."
-    );
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   //
-  test("empty string",  () => {
-    const n = "";
-     expect(isPrime(n)).rejects.toThrowError(
-      "You should type valid integer number."
-    );
-  });
-
-  //
-  test("decimal value",  () => {
+  test("decimal value 12.41", () => {
     const n = 12.41;
-     expect(isPrime(n)).rejects.toThrowError(
-      "You should type valid integer number."
-    );
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   //
-  test("Far below the LB of value",  () => {
+  test("Far below the LB of value", () => {
     const n = -10090;
-     expect(isPrime(n)).rejects.toThrowError(
-      "You should type valid integer number."
-    );
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   //
-  test("Far above the UB of value",  () => {
+  test("Far above the UB of value", () => {
     const n = 12347;
-     expect(isPrime(n)).rejects.toThrowError(
-      "You should type valid integer number."
-    );
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   // "adfkh" => non digits (characters)
-  test("non digits (characters)",  () => {
+  test("non digits (characters)", () => {
     const n = "adfkh";
-     expect(isPrime(n)).rejects.toThrowError(
-      "You should type valid integer number."
-    );
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   // "   " => white spaces
-  test("white spaces",  () => {
+  test("white spaces", () => {
     const n = "   ";
-     expect(isPrime(n)).rejects.toThrowError(
-      "You should type valid integer number."
-    );
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   // " 100" => leading spaces
-  test("leading spaces",  () => {
+  test("leading spaces", () => {
     const n = " 100";
-     expect(isPrime(n)).rejects.toThrowError(
-      "You should type valid integer number."
-    );
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   // "  123  " => many leading and trailing spaces
-  test("many leading and trailing spaces",  () => {
+  test("many leading and trailing spaces", () => {
     const n = "  123  ";
-     expect(isPrime(n)).rejects.toThrowError(
-      "You should type valid integer number."
-    );
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   // "034" => leading 0 ===>>> 28
   // 034 ===>>> SyntaxError: Legacy octal literals are not allowed in strict mode
-  test("leading 0",  () => {
+  test("leading 0", () => {
     const n = "034"; // 034; //
-     expect(isPrime(n)).rejects.toThrowError(
-      "You should type valid integer number."
-    );
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   // "00012" => many leading zero
   // 00012 ===>>> SyntaxError: Legacy octal literals are not allowed in strict mode
-  test(" many leading zero",  () => {
+  test(" many leading zero", () => {
     const n = "00012"; //  00012; //
-     expect(isPrime(n)).rejects.toThrowError(
-      "You should type valid integer number."
-    );
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   // " +98" => leading && + sign
-  test("leading && + sign",  () => {
+  test("leading && + sign", () => {
     const n = " +98"; // " +98" ;
-     expect(isPrime(n)).rejects.toThrowError(
-      "You should type valid integer number."
-    );
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   // "   *24" => many leading && + sign ===>>> Uncaught SyntaxError: Unexpected token '*',  NaN
-  test("many leading && + sign",  () => {
+  test("many leading && + sign", () => {
     const n = "   *24"; // *24; //
-     expect(isPrime(n)).rejects.toThrowError(
-      "You should type valid integer number."
-    );
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   // "!@#$&*()" => special characters
-  test("special characters",  () => {
+  test("special characters", () => {
     const n = "!@#$&*()"; // "!@#$&*()" ;
-     expect(isPrime(n)).rejects.toThrowError(
-      "You should type valid integer number."
-    );
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   // "number" => javascript keyword
-  test("javascript keyword",  () => {
+  test("javascript keyword", () => {
     const n = "number";
-     expect(isPrime(n)).rejects.toThrowError(
-      "You should type valid integer number."
-    );
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   // "10", "100", "12" => # of arguments (more than 1 input)
-  test("# of arguments (more than 1 input)",  () => {
+  test("# of arguments (more than 1 input)", () => {
     //const n = "number";
-     expect(isPrime("10", "100", "12")).rejects.toThrowError(
-      "You should type valid integer number."
-    );
+    try {
+      expect(isPrime("10", "100", "12")).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
-
-  //
 });
-*/
