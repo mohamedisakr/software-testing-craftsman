@@ -117,7 +117,7 @@ describe("14 test cases The Art of Software Testing 2011 pp. 2", () => {
   });
 
   //
-  test("13 the wrong number of values (arguments) 2 rather than 3 integers", () => {
+  test("13 the wrong number s (arguments) 2 rather than 3 integers", () => {
     try {
       expect(solve(3, 4)).toBe(false);
     } catch (e) {
@@ -137,41 +137,41 @@ describe("14 test cases The Art of Software Testing 2011 pp. 2", () => {
 });
 
 // ******************************************************************
-/*
+// /*
 //
 describe("Boundary Value Analysis + Equivalence Partitioning", () => {
   //
-  test("the LB (lower bound) of value 1", () => {
+  test("1. the LB (lower bound)  1", () => {
     const n = 1;
     expect(solve(n, n, n)).toBe(equilateral);
   });
 
   //
-  test("above the LB (lower bound) of value 2", () => {
+  test("2. above the LB (lower bound)  2", () => {
     const n = 2;
     expect(solve(n, n, n)).toBe(equilateral);
   });
 
   //
-  test("nominal value 100", () => {
+  test("3. nominal value 100", () => {
     const n = 100;
     expect(solve(n, n, n)).toBe(equilateral);
   });
 
   //
-  test("below the UB (upper bound) of value 199", () => {
+  test("4. below the UB (upper bound)  199", () => {
     const n = 199;
     expect(solve(n, n, n)).toBe(equilateral);
   });
 
   //
-  test("the UB (upper bound) of value 200", () => {
+  test("5. the UB (upper bound)  200", () => {
     const n = 200;
     expect(solve(n, n, n)).toBe(equilateral);
   });
 
   // invalid
-  test("above the UB (upper bound) of value 201", () => {
+  test("6. above the UB (upper bound)  201", () => {
     const n = 201;
     try {
       expect(solve(n, n, n)).toBe(false);
@@ -181,7 +181,7 @@ describe("Boundary Value Analysis + Equivalence Partitioning", () => {
   });
 
   // invalid
-  test("below the LB (lower bound) of value -1", () => {
+  test("7. below the LB (lower bound)  -1", () => {
     const n = -1;
     try {
       expect(solve(n, n, n)).toBe(false);
@@ -218,7 +218,7 @@ describe("Error Guessing + Special Values", () => {
   });
 
   //
-  test("Far below the LB of value", () => {
+  test("Far below the LB ", () => {
     const n = -10090;
     try {
       expect(isPrime(n)).toBe(false);
@@ -228,7 +228,7 @@ describe("Error Guessing + Special Values", () => {
   });
 
   //
-  test("Far above the UB of value", () => {
+  test("Far above the UB ", () => {
     const n = 12347;
     try {
       expect(isPrime(n)).toBe(false);
