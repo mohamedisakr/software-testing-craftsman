@@ -42,12 +42,20 @@ describe("14 test cases The Art of Software Testing 2011 pp. 2", () => {
 
   //
   test("5 one side has a zero value", () => {
-    expect(solve(0, 3, 3)).toBe(notATriangle);
+    try {
+      expect(solve(0, 3, 3)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   //
   test("6 one side has a negative value", () => {
-    expect(solve(-1, 2, 2)).toBe(notATriangle);
+    try {
+      expect(solve(-1, 2, 2)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   //
@@ -92,17 +100,29 @@ describe("14 test cases The Art of Software Testing 2011 pp. 2", () => {
 
   //
   test("11 all sides are zero", () => {
-    expect(solve(0, 0, 0)).toBe(notATriangle);
+    try {
+      expect(solve(0, 0, 0)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   //
   test("12 noninteger values", () => {
-    expect(solve(2.5, 3.5, 5.5)).toBe(scalene);
+    try {
+      expect(solve(2.5, 3.5, 5.5)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   //
   test("13 the wrong number of values (arguments) 2 rather than 3 integers", () => {
-    expect(solve(3, 4)).toBe(notATriangle);
+    try {
+      expect(solve(3, 4)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
   });
 
   //
@@ -170,7 +190,7 @@ describe("Boundary Value Analysis + Equivalence Partitioning", () => {
     }
   });
 });
-*/
+// */
 
 // ******************************************************************
 

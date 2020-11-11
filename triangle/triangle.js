@@ -5,6 +5,7 @@ const {
   equilateral,
   isosceles,
   notATriangle,
+  errorMessage,
 } = require("./data");
 
 function isTriangle(a, b, c) {
@@ -35,13 +36,38 @@ function isScaleneAndRight(a, b, c) {
   return isScalene(a, b, c) && isRight(a, b, c);
 }
 
+function isInValidRange(side) {
+  if (side < 1 || side > 200) {
+    return false;
+  }
+  return true;
+}
+
+function isInteger(side) {
+  return Number.isInteger(side);
+}
+
 function solve(a, b, c) {
+  // check if side in valid range 1 : 200
+  if (
+    isInValidRange(a) === false ||
+    isInValidRange(b) === false ||
+    isInValidRange(c) === false
+  ) {
+    throw new RangeError(errorMessage);
+  }
+
+  // check if side is integer number
+  if (isInteger(a) !== true || isInteger(b) !== true || isInteger(c) !== true) {
+    throw new RangeError(errorMessage);
+  }
+
   // first check if the 3 side can form a tringle
   if (isTriangle(a, b, c) !== true) {
     return notATriangle;
   }
 
-  // check if scalene,  right,  scalene and right,  equilateral,  isosceles,
+  // output the triangle type (scalene,  right,  scalene and right,  equilateral,  isosceles)
   if (isEquilateral(a, b, c)) {
     return equilateral;
   } else if (isIsosceles(a, b, c)) {
