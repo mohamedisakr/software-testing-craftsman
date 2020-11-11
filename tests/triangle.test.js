@@ -194,84 +194,84 @@ describe("Boundary Value Analysis + Equivalence Partitioning", () => {
 
 // ******************************************************************
 
-/*
+// /*
 //
 describe("Error Guessing + Special Values", () => {
   //
-  test("empty string", () => {
+  test("1 empty string", () => {
     const n = "";
     try {
-      expect(isPrime(n)).toBe(false);
+      expect(solve(n, n, n)).toBe(false);
     } catch (e) {
       expect(e.message).toBe(errorMessage);
     }
   });
 
   //
-  test("decimal value 12.41", () => {
+  test("2. decimal value 12.41", () => {
     const n = 12.41;
     try {
-      expect(isPrime(n)).toBe(false);
+      expect(solve(n, n, n)).toBe(false);
     } catch (e) {
       expect(e.message).toBe(errorMessage);
     }
   });
 
   //
-  test("Far below the LB ", () => {
+  test("3 Far below the LB ", () => {
     const n = -10090;
     try {
-      expect(isPrime(n)).toBe(false);
+      expect(solve(n, n, n)).toBe(false);
     } catch (e) {
       expect(e.message).toBe(errorMessage);
     }
   });
 
   //
-  test("Far above the UB ", () => {
+  test("4 Far above the UB ", () => {
     const n = 12347;
     try {
-      expect(isPrime(n)).toBe(false);
+      expect(solve(n, n, n)).toBe(false);
     } catch (e) {
       expect(e.message).toBe(errorMessage);
     }
   });
 
   // "adfkh" => non digits (characters)
-  test("non digits (characters)", () => {
+  test("5 non digits (characters)", () => {
     const n = "adfkh";
     try {
-      expect(isPrime(n)).toBe(false);
+      expect(solve(n, n, n)).toBe(false);
     } catch (e) {
       expect(e.message).toBe(errorMessage);
     }
   });
 
   // "   " => white spaces
-  test("white spaces", () => {
+  test("6 white spaces", () => {
     const n = "   ";
     try {
-      expect(isPrime(n)).toBe(false);
+      expect(solve(n, n, n)).toBe(false);
     } catch (e) {
       expect(e.message).toBe(errorMessage);
     }
   });
 
   // " 100" => leading spaces
-  test("leading spaces", () => {
+  test("7 leading spaces", () => {
     const n = " 100";
     try {
-      expect(isPrime(n)).toBe(false);
+      expect(solve(n, n, n)).toBe(false);
     } catch (e) {
       expect(e.message).toBe(errorMessage);
     }
   });
 
   // "  123  " => many leading and trailing spaces
-  test("many leading and trailing spaces", () => {
+  test("8 many leading and trailing spaces", () => {
     const n = "  123  ";
     try {
-      expect(isPrime(n)).toBe(false);
+      expect(solve(n, n, n)).toBe(false);
     } catch (e) {
       expect(e.message).toBe(errorMessage);
     }
@@ -279,10 +279,10 @@ describe("Error Guessing + Special Values", () => {
 
   // "034" => leading 0 ===>>> 28
   // 034 ===>>> SyntaxError: Legacy octal literals are not allowed in strict mode
-  test("leading 0", () => {
+  test("9 leading 0", () => {
     const n = "034"; // 034; //
     try {
-      expect(isPrime(n)).toBe(false);
+      expect(solve(n, n, n)).toBe(false);
     } catch (e) {
       expect(e.message).toBe(errorMessage);
     }
@@ -290,64 +290,63 @@ describe("Error Guessing + Special Values", () => {
 
   // "00012" => many leading zero
   // 00012 ===>>> SyntaxError: Legacy octal literals are not allowed in strict mode
-  test(" many leading zero", () => {
+  test("10 many leading zero", () => {
     const n = "00012"; //  00012; //
     try {
-      expect(isPrime(n)).toBe(false);
+      expect(solve(n, n, n)).toBe(false);
     } catch (e) {
       expect(e.message).toBe(errorMessage);
     }
   });
 
   // " +98" => leading && + sign
-  test("leading && + sign", () => {
+  test("11 leading && + sign", () => {
     const n = " +98"; // " +98" ;
     try {
-      expect(isPrime(n)).toBe(false);
+      expect(solve(n, n, n)).toBe(false);
     } catch (e) {
       expect(e.message).toBe(errorMessage);
     }
   });
 
   // "   *24" => many leading && + sign ===>>> Uncaught SyntaxError: Unexpected token '*',  NaN
-  test("many leading && + sign", () => {
+  test("12 many leading && + sign", () => {
     const n = "   *24"; // *24; //
     try {
-      expect(isPrime(n)).toBe(false);
+      expect(solve(n, n, n)).toBe(false);
     } catch (e) {
       expect(e.message).toBe(errorMessage);
     }
   });
 
   // "!@#$&*()" => special characters
-  test("special characters", () => {
+  test("13 special characters", () => {
     const n = "!@#$&*()"; // "!@#$&*()" ;
     try {
-      expect(isPrime(n)).toBe(false);
+      expect(solve(n, n, n)).toBe(false);
     } catch (e) {
       expect(e.message).toBe(errorMessage);
     }
   });
 
   // "number" => javascript keyword
-  test("javascript keyword", () => {
+  test("14 javascript keyword", () => {
     const n = "number";
     try {
-      expect(isPrime(n)).toBe(false);
+      expect(solve(n, n, n)).toBe(false);
     } catch (e) {
       expect(e.message).toBe(errorMessage);
     }
   });
 
   // "10", "100", "12" => # of arguments (more than 1 input)
-  test("# of arguments (more than 1 input)", () => {
-    //const n = "number";
+  test("15 # of arguments (more than 1 input)", () => {
     try {
-      expect(isPrime("10", "100", "12")).toBe(false);
+      expect(solve("10", "100", "12")).toBe(false);
     } catch (e) {
       expect(e.message).toBe(errorMessage);
     }
   });
 });
 
-*/
+// */
