@@ -1,16 +1,18 @@
 const { solve } = require("../triangle/triangle");
 const {
   scalene,
+  right,
+  scaleneAndRight,
   equilateral,
   isosceles,
-  right,
   notATriangle,
+  errorMessage,
 } = require("../triangle/data");
 
 describe("14 test cases The Art of Software Testing 2011 pp. 2", () => {
   //
-  test("1 valid scalene triangle", () => {
-    expect(solve(3, 4, 5)).toBe(scalene);
+  test("1 valid scalene triangle and valid right triangle", () => {
+    expect(solve(3, 4, 5)).toBe(scaleneAndRight);
   });
 
   //
@@ -107,4 +109,225 @@ describe("14 test cases The Art of Software Testing 2011 pp. 2", () => {
   test("14 the sum of two of the numbers is equal to the third", () => {
     expect(solve(1, 2, 3)).toBe(notATriangle);
   });
+
+  //
+  test("15 valid right triangle and scalene triangle", () => {
+    expect(solve(3, 4, 5)).toBe(scaleneAndRight);
+  });
 });
+
+// ******************************************************************
+/*
+//
+describe("Boundary Value Analysis + Equivalence Partitioning", () => {
+  //
+  test("the LB (lower bound) of value 1", () => {
+    const n = 1;
+    expect(solve(n, n, n)).toBe(equilateral);
+  });
+
+  //
+  test("above the LB (lower bound) of value 2", () => {
+    const n = 2;
+    expect(solve(n, n, n)).toBe(equilateral);
+  });
+
+  //
+  test("nominal value 100", () => {
+    const n = 100;
+    expect(solve(n, n, n)).toBe(equilateral);
+  });
+
+  //
+  test("below the UB (upper bound) of value 199", () => {
+    const n = 199;
+    expect(solve(n, n, n)).toBe(equilateral);
+  });
+
+  //
+  test("the UB (upper bound) of value 200", () => {
+    const n = 200;
+    expect(solve(n, n, n)).toBe(equilateral);
+  });
+
+  // invalid
+  test("above the UB (upper bound) of value 201", () => {
+    const n = 201;
+    try {
+      expect(solve(n, n, n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
+  });
+
+  // invalid
+  test("below the LB (lower bound) of value -1", () => {
+    const n = -1;
+    try {
+      expect(solve(n, n, n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
+  });
+});
+*/
+
+// ******************************************************************
+
+/*
+//
+describe("Error Guessing + Special Values", () => {
+  //
+  test("empty string", () => {
+    const n = "";
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
+  });
+
+  //
+  test("decimal value 12.41", () => {
+    const n = 12.41;
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
+  });
+
+  //
+  test("Far below the LB of value", () => {
+    const n = -10090;
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
+  });
+
+  //
+  test("Far above the UB of value", () => {
+    const n = 12347;
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
+  });
+
+  // "adfkh" => non digits (characters)
+  test("non digits (characters)", () => {
+    const n = "adfkh";
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
+  });
+
+  // "   " => white spaces
+  test("white spaces", () => {
+    const n = "   ";
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
+  });
+
+  // " 100" => leading spaces
+  test("leading spaces", () => {
+    const n = " 100";
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
+  });
+
+  // "  123  " => many leading and trailing spaces
+  test("many leading and trailing spaces", () => {
+    const n = "  123  ";
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
+  });
+
+  // "034" => leading 0 ===>>> 28
+  // 034 ===>>> SyntaxError: Legacy octal literals are not allowed in strict mode
+  test("leading 0", () => {
+    const n = "034"; // 034; //
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
+  });
+
+  // "00012" => many leading zero
+  // 00012 ===>>> SyntaxError: Legacy octal literals are not allowed in strict mode
+  test(" many leading zero", () => {
+    const n = "00012"; //  00012; //
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
+  });
+
+  // " +98" => leading && + sign
+  test("leading && + sign", () => {
+    const n = " +98"; // " +98" ;
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
+  });
+
+  // "   *24" => many leading && + sign ===>>> Uncaught SyntaxError: Unexpected token '*',  NaN
+  test("many leading && + sign", () => {
+    const n = "   *24"; // *24; //
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
+  });
+
+  // "!@#$&*()" => special characters
+  test("special characters", () => {
+    const n = "!@#$&*()"; // "!@#$&*()" ;
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
+  });
+
+  // "number" => javascript keyword
+  test("javascript keyword", () => {
+    const n = "number";
+    try {
+      expect(isPrime(n)).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
+  });
+
+  // "10", "100", "12" => # of arguments (more than 1 input)
+  test("# of arguments (more than 1 input)", () => {
+    //const n = "number";
+    try {
+      expect(isPrime("10", "100", "12")).toBe(false);
+    } catch (e) {
+      expect(e.message).toBe(errorMessage);
+    }
+  });
+});
+
+*/

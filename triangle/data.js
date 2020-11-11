@@ -1,8 +1,12 @@
 const scalene = "Scalene";
+const right = "Right";
+const scaleneAndRight = "Scalene and Right";
 const equilateral = "Equilateral";
 const isosceles = "Isosceles";
-const right = "Right";
 const notATriangle = "Not A Triangle";
+
+const errorMessage =
+  "The number should be integer, within range between 1 and 200";
 
 const testData = [
   {
@@ -146,45 +150,10 @@ const testData = [
 module.exports = {
   testData,
   scalene,
+  right,
+  scaleneAndRight,
   equilateral,
   isosceles,
-  right,
   notATriangle,
+  errorMessage,
 };
-
-/*
-15. 1, 2, 3 => invalid scalene triangle
-16. 2, 5, 10 => invalid scalene triangle
-17. 2, 2, 4 => invalid isosceles triangle
-
-
-Boundary Value Analysis + Equivalence Partitioning
-=====================================================
-1. 
-2. 
-3. 
-4. 
-5. 
-6. 
-7. 
-8. 
-
-
-Error Guessing
-================
-1. "" => empty string 
-2. 12.41 => decimal value
-3. -10090 => Far below the LB of value
-4. 12347 => Far above the UB of value
-5. "adfkh" => non digits characters
-6. "   " => white spaces
-7. " 100" => leading spaces
-8. "  123  " => many leading and trailing spaces
-9. "034" => leading 0
-10. "00012" => many leading zero
-11. " +98" => leading && + sign
-12. "   *24" => many leading && + sign
-13. "!@#$&*()" => special characters
-14. "number" => javascript keyword
-15. "10", "100", "12", "20", "14", "9" => # of arguments (more than 3 input)
-*/
