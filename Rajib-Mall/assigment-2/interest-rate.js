@@ -28,3 +28,11 @@ the largest # of subsets = 3
 
 // we will always have the same # of weak equivalence class test cases as classes
 // in the partition with the largest # of subsets
+function ReturnObject(amount) {
+  let rate = amount * 0.08;
+  let total = amount + rate;
+  return { rate, total };
+}
+
+const { rate, total } = ReturnObject(70000);
+console.log(rate, total);
