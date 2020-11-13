@@ -4,6 +4,7 @@ const {
   amountErrorMessage,
 } = require("../Rajib-Mall/assigment-2/interest-rate");
 
+// Strong robust equivalence class test cases
 // We obtain test cases from each element of the Cartesian product of all the
 // equivalence classes, both valid and invalid
 // 2 valid + 2 invalid for amount = 4
