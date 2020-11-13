@@ -6,8 +6,8 @@
 
 ### Test cases for Robust Worst Case Boundary 7^n
 
-### we will always have the same # of weak equivalence class test cases as classes in the partition with the largest # of subsets
+### Weak equivalence class: we will always have the same # of weak equivalence class test cases as classes in the partition with the largest # of subsets
 
-### Strong equivalence class testing is based on the multiple fault assumption, so we need test cases from each element of the Cartesian product of the equivalence classes
+### Strong equivalence class: testing is based on the multiple fault assumption, so we need test cases from each element of the Cartesian product of the equivalence classes
 
-###
+### Strong Robust Equivalence Class: We obtain test cases from each element of the Cartesian product of all the equivalence classes, both valid and invalid
