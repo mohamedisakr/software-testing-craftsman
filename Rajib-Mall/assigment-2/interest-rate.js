@@ -26,10 +26,17 @@ the largest # of subsets = 3
 
 */
 
-// we will always have the same # of weak equivalence class test cases as classes
-// in the partition with the largest # of subsets
+// weak equivalence class test cases: we will always have the same # of weak equivalence
+// class test cases as classes in the partition with the largest # of subsets
+
+// Strong equivalence class testing is based on the multiple fault assumption,
+// so we need test cases from each element of the Cartesian product of the
+// equivalence classes
+
+const percentages = [0.06, 0.07, 0.08, 0.09];
+
 function ReturnObject(amount) {
-  let rate = amount * 0.08;
+  let rate = amount * percentages[2];
   let total = amount + rate;
   return { rate, total };
 }
