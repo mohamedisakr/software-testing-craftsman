@@ -44,31 +44,65 @@ a5: Grade P
 a6: Grade F
 */
 //#endregion
+const attendanceError =
+  "Attendance should be integer, within range from 1 to less than or equal to 100";
 
+const marksError =
+  "Marks should be integer, within range from 1 to less than or equal to 100";
+
+function isInteger(arg) {
+  return Number.isInteger(arg);
+}
+
+function isInValidRange(arg) {
+  if (arg < 1 || arg > 100) {
+    return false;
+  }
+  return true;
+}
 //
 function computeGrade(attendance, marks) {
   //
+  if (isInValidRange(attendance) === false) {
+    throw new RangeError(attendanceError);
+  }
+
+  //
+  if (isInValidRange(marks) === false) {
+    throw new RangeError(marksError);
+  }
+
+  //
+  if (isInteger(attendance) === false) {
+    throw new RangeError(attendanceError);
+  }
+
+  //
+  if (isInteger(marks) === false) {
+    throw new RangeError(marksError);
+  }
+
+  //
   if (attendance < 80) {
     return GradeType.F_Grade;
+  }
+  // 90% <= marks <= 100%
+  if (marks >= 90 && marks <= 100) {
+    return GradeType.A_Grade;
+    // 80% <= marks < 90%
+  } else if (marks >= 80 && marks < 90) {
+    return GradeType.B_Grade;
+    // 70% <= marks < 80%
+  } else if (marks >= 70 && marks < 80) {
+    return GradeType.C_Grade;
+    // 60% <= marks < 70%
+  } else if (marks >= 60 && marks < 70) {
+    return GradeType.D_Grade;
+    // 50% <= marks < 60
+  } else if (marks >= 50 && marks < 60) {
+    return GradeType.E_Grade;
   } else {
-    // 90% <= marks <= 100%
-    if (marks >= 90 && marks <= 100) {
-      return GradeType.A_Grade;
-      // 80% <= marks < 90%
-    } else if (marks >= 80 && marks < 90) {
-      return GradeType.B_Grade;
-      // 70% <= marks < 80%
-    } else if (marks >= 70 && marks < 80) {
-      return GradeType.C_Grade;
-      // 60% <= marks < 70%
-    } else if (marks >= 60 && marks < 70) {
-      return GradeType.D_Grade;
-      // 50% <= marks < 60
-    } else if (marks >= 50 && marks < 60) {
-      return GradeType.E_Grade;
-    } else {
-      return GradeType.F_Grade;
-    }
+    return GradeType.F_Grade;
   }
 }
 
@@ -81,6 +115,7 @@ const GradeType = {
   F_Grade: "F",
 };
 Object.freeze(GradeType);
+
 // for (const key in GradeType) {
 //   if (GradeType.hasOwnProperty(key)) {
 //     const element = GradeType[key];
@@ -88,4 +123,4 @@ Object.freeze(GradeType);
 //   }
 // }
 
-module.exports = { computeGrade, GradeType };
+module.exports = { computeGrade, GradeType, attendanceError, marksError };
