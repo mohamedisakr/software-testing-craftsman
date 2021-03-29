@@ -54,50 +54,50 @@ const P12 = {
 const Q1 = {
   desc: "char2 is 1 digit number from 0 to 9",
   equivClass: "1",
-  val: "2",
+  val: "7",
 };
 const Q2 = {
   desc: "char2 is Latin upper case letter",
   equivClass: "2",
-  val: "N",
+  val: "M",
 };
 const Q3 = {
   desc: "char2 is Cyrillic upper case letter",
   equivClass: "3",
-  val: "Ф",
+  val: "Я",
 };
 const Q4 = {
   desc: "char2 is Greek upper case letter",
   equivClass: "4",
-  val: "Σ",
+  val: "Ω",
 };
 const Q5 = { desc: "char2 is blank value", equivClass: "4", val: "" };
-const Q6 = { desc: "char2 is special letter", equivClass: "6", val: "#" };
+const Q6 = { desc: "char2 is special letter", equivClass: "6", val: "&" };
 const Q7 = {
   desc: "char2 is Latin lower case letter",
   equivClass: "7",
-  val: "n",
+  val: "m",
 };
 const Q8 = {
   desc: "char2 is Cyrillic lower case letter",
   equivClass: "8",
-  val: "ф",
+  val: "я",
 };
 const Q9 = {
   desc: "char2 is Greek lower case letter",
   equivClass: "9",
-  val: "σ",
+  val: "ω",
 };
 const Q10 = {
   desc: "char2 is more than 1 digit number",
   equivClass: "10",
-  val: "22",
+  val: "77",
 };
-const Q11 = { desc: "char2 is negative number", equivClass: "11", val: "-1" };
+const Q11 = { desc: "char2 is negative number", equivClass: "11", val: "-5" };
 const Q12 = {
   desc: "char2 is other languages letter",
   equivClass: "2",
-  val: "م",
+  val: "د",
 };
 
 // arrays
@@ -135,7 +135,7 @@ const cartesianProduct = (arr1, arr2) => {
     for (let j = 0; j < arr2.length; j++) {
       // const Q11 = { desc: "char2 is negative number", equivClass: "11", val: "-1" };
       let testCase = {
-        testCaseDesc: `${arr1[i].desc}, ${arr2[j].desc}`,
+        testCaseDesc: `${arr1[i].desc} and ${arr2[j].desc}`,
         char1: arr1[i].val,
         char2: arr2[j].val,
         result: checkInvalidEquivalenceClass(arr1[i], arr2[j]),
@@ -152,6 +152,9 @@ allCombinations.forEach((item) => console.log(item));
 // const zeros = allCombinations.filter((item) => item.result === 0);
 // console.log(`# zeros : ${zeros.length}`);
 console.log(allCombinations.length);
+
+// generate table
+// TC# | Description | char1 | char2 | Result
 
 // const cartesianProduct = (...arr) => {
 //   return arr.reduce(
