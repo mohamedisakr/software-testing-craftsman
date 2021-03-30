@@ -6,34 +6,34 @@ const P1 = {
   val: "2",
 };
 const P2 = {
-  desc: "char1 is Latin upper case letter",
+  desc: "char1 is Latin upper-case letter",
   equivClass: "2",
   val: "N",
 };
 const P3 = {
-  desc: "char1 is Cyrillic upper case letter",
+  desc: "char1 is Cyrillic upper-case letter",
   equivClass: "3",
   val: "Ф",
 };
 const P4 = {
-  desc: "char1 is Greek upper case letter",
+  desc: "char1 is Greek upper-case letter",
   equivClass: "4",
   val: "Σ",
 };
 const P5 = { desc: "char1 is blank value", equivClass: "4", val: "" };
 const P6 = { desc: "char1 is special letter", equivClass: "6", val: "#" };
 const P7 = {
-  desc: "char1 is Latin lower case letter",
+  desc: "char1 is Latin lower-case letter",
   equivClass: "7",
   val: "n",
 };
 const P8 = {
-  desc: "char1 is Cyrillic lower case letter",
+  desc: "char1 is Cyrillic lower-case letter",
   equivClass: "8",
   val: "ф",
 };
 const P9 = {
-  desc: "char1 is Greek lower case letter",
+  desc: "char1 is Greek lower-case letter",
   equivClass: "9",
   val: "σ",
 };
@@ -57,34 +57,34 @@ const Q1 = {
   val: "7",
 };
 const Q2 = {
-  desc: "char2 is Latin upper case letter",
+  desc: "char2 is Latin upper-case letter",
   equivClass: "2",
   val: "M",
 };
 const Q3 = {
-  desc: "char2 is Cyrillic upper case letter",
+  desc: "char2 is Cyrillic upper-case letter",
   equivClass: "3",
   val: "Я",
 };
 const Q4 = {
-  desc: "char2 is Greek upper case letter",
+  desc: "char2 is Greek upper-case letter",
   equivClass: "4",
   val: "Ω",
 };
 const Q5 = { desc: "char2 is blank value", equivClass: "4", val: "" };
 const Q6 = { desc: "char2 is special letter", equivClass: "6", val: "&" };
 const Q7 = {
-  desc: "char2 is Latin lower case letter",
+  desc: "char2 is Latin lower-case letter",
   equivClass: "7",
   val: "m",
 };
 const Q8 = {
-  desc: "char2 is Cyrillic lower case letter",
+  desc: "char2 is Cyrillic lower-case letter",
   equivClass: "8",
   val: "я",
 };
 const Q9 = {
-  desc: "char2 is Greek lower case letter",
+  desc: "char2 is Greek lower-case letter",
   equivClass: "9",
   val: "ω",
 };
@@ -148,13 +148,36 @@ const cartesianProduct = (arr1, arr2) => {
 };
 
 const allCombinations = cartesianProduct(ps, qs);
-allCombinations.forEach((item) => console.log(item));
+// allCombinations.forEach((item) => console.log(item));
 // const zeros = allCombinations.filter((item) => item.result === 0);
 // console.log(`# zeros : ${zeros.length}`);
 console.log(allCombinations.length);
 
 // generate table
 // TC# | Description | char1 | char2 | Result
+let table = `<table>
+<thead>
+  <tr>
+    <th>TC#</th>
+    <th>Description</th>
+    <th>char1</th>
+    <th>char2</th>
+    <th>Result</th>
+  </tr>
+</thead>
+<tbody>`;
+allCombinations.forEach((item, index) => {
+  let { testCaseDesc, char1, char2, result } = item;
+  table += `<tr>`;
+  table += `<td>${index + 1}</td>`;
+  table += `<td>${testCaseDesc}</td>`;
+  table += `<td>${char1}</td>`;
+  table += `<td>${char2}</td>`;
+  table += `<td>${result}</td>`;
+  table += `</tr>`;
+});
+table += `</tbody></table>`;
+console.log(table);
 
 // const cartesianProduct = (...arr) => {
 //   return arr.reduce(
