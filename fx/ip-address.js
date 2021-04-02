@@ -11,7 +11,8 @@ function return list with input parameter IP Address added except if it is NOT i
 if IP Address added to blocklist, ping request from specified IP to local node should end with Request Time Out by default timeout (4 seconds) with 100% packet loss
 
 after blocking.period.seconds blocked IP address should be unblocked. 
-period.seconds rule has 3 equivalence class
+period.seconds rule has 3 equivalence class { < seconds, seconds , > seconds }
+
 */
 
 const config = {
