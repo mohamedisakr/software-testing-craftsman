@@ -25,4 +25,16 @@ describe("add function EDGE test suite", () => {
       }
     });
   });
+
+  //   it("What about multiple expect() function in 1 test() / it() block", () => {
+  //     expect(add(1, 2)).toEqual(3);
+  //     expect(add(1, 2)).not.toEqual(3);
+  //   });
+
+  //   edgeTestCases.forEach((testCase) => {
+  //     const { description, num1, num2, actual } = testCase;
+  //     it(`${description}`, () => {
+  //       expect(add(num1, num2)).toThrow();
+  //     });
+  //   });
 });
