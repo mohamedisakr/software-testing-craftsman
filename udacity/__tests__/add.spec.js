@@ -1,7 +1,11 @@
 const add = require("../add");
-const { normalTestCases, edgeTestCases } = require("../fixtures/test-data");
+const {
+  normalTestCases,
+  decimalTestCase,
+  edgeTestCases,
+} = require("../fixtures/test-data");
 
-describe("add function NORMAL test suite", () => {
+describe("NORMAL test suite - add function ", () => {
   normalTestCases.forEach((testCase) => {
     const { description, num1, num2, actual } = testCase;
     it(`${description}`, () => {
@@ -11,7 +15,17 @@ describe("add function NORMAL test suite", () => {
   });
 });
 
-describe("add function EDGE test suite", () => {
+describe("DECIMAL test suite - add function", () => {
+  decimalTestCase.forEach((testCase) => {
+    const { description, num1, num2, actual } = testCase;
+    it(`${description}`, () => {
+      const expected = add(num1, num2);
+      expect(expected).toBeCloseTo(actual);
+    });
+  });
+});
+
+describe("EDGE test suite - add function", () => {
   // edgeTestCases.forEach((testCase) => {
   //   const { description, num1, num2, actual } = testCase;
   //   it(`${description}`, () => {
