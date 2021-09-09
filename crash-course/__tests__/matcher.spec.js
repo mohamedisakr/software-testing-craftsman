@@ -92,3 +92,11 @@ describe.only("exceptions", () => {
     expect(() => compileAndroidCode()).toThrow(/JDK/);
   });
 });
+
+describe("user", () => {
+  describe("admin user", () => {
+    it("should be able to unblock member user account", () => {
+      // ...
+    });
+  });
+});
