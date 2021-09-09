@@ -1,5 +1,5 @@
-/*
-describe.each([
+// /*
+xdescribe.each([
   [1, 1, 2],
   [1, 2, 3],
   [2, 1, 3],
@@ -16,9 +16,9 @@ describe.each([
     expect(a + b).not.toBeLessThan(expected);
   });
 });
-*/
+// */
 
-describe.each([
+xdescribe.each([
   { a: 1, b: 1, expected: 2 },
   { a: 1, b: 2, expected: 3 },
   { a: 2, b: 1, expected: 3 },
