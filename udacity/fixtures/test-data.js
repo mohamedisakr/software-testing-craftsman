@@ -15,4 +15,10 @@ const edgeTestCases = [
   },
 ];
 
-module.exports = { normalTestCases, decimalTestCase, edgeTestCases };
+const testCases = [
+  ["should add integers", 1, 2, 3],
+  // ["should add decimals", 0.1, 0.2, 0.3],
+  // ["should throw error if strings", "1", "2", "3"],
+];
+
+module.exports = { testCases, normalTestCases, decimalTestCase, edgeTestCases };

@@ -1,9 +1,21 @@
 const add = require("../add");
 const {
+  testCases,
   normalTestCases,
   decimalTestCase,
   edgeTestCases,
 } = require("../fixtures/test-data");
+
+describe.only("mixed test cases", () => {
+  // description: "should add integers", num1: 1, num2: 2, actual: 3
+  test.each(testCases)(
+    '"%s"  %d + %d = %d',
+    (description, num1, num2, actual) => {
+      const expected = add(num1, num2);
+      expect(expected).toEqual(actual);
+    }
+  );
+});
 
 describe("NORMAL test suite - add function ", () => {
   normalTestCases.forEach((testCase) => {
