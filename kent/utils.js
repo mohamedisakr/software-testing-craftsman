@@ -7,4 +7,5 @@ const getWinner = (player1, player2) => {
   }
 };
 
-console.log(getWinner("tamil", "samsoom"));
+module.exports = { getWinner };
+// console.log(getWinner("tamil", "samsoom"));
