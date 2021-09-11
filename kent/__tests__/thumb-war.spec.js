@@ -2,11 +2,7 @@ const thumbWar = require("../thumb-war");
 const utils = require("../utils");
 const utilsMock = require("../utils");
 
-jest.mock("../utils", () => {
-  return {
-    getWinner: jest.fn((p1, p2) => p2),
-  };
-});
+jest.mock("../../utils");
 
 test("returns winner", () => {
   const winner = thumbWar("Ken Wheeler", "Kent C. Dodds");
